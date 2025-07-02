@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulation de démarche CAF</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/favicon.png" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Service Info CAF</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="aides.html">Aides</a></li>
+          <li><a href="demarches.html">Démarches</a></li>
+          <li><a href="demarche-simulation.html">📄 Faire une démarche</a></li>
+          <li class="caf-button"><a href="connexion.html">👤 Mon Compte</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Faire une démarche en ligne</h2>
+      <p>Ce formulaire simule une demande d'aide CAF. Aucun envoi réel n’est effectué.</p>
+    </section>
+
+    <form class="formulaire" id="form-demarche">
+      <label>Choisir la prestation :
+        <select id="prestation" required>
+          <option value="">-- Sélectionner --</option>
+          <option value="APL">APL (Aide au Logement)</option>
+          <option value="RSA">RSA (Revenu de Solidarité Active)</option>
+          <option value="Allocations familiales">Allocations familiales</option>
+          <option value="Prime d’activité">Prime d’activité</option>
+        </select>
+      </label>
+
+      <label>Nom complet :
+        <input type="text" id="nom-complet" placeholder="Jean Dupont" required />
+      </label>
+
+      <label>Date de naissance :
+        <input type="date" id="naissance" required />
+      </label>
+
+      <label>Situation professionnelle :
+        <select id="emploi" required>
+          <option value="">-- Sélectionner --</option>
+          <option value="En emploi">En emploi</option>
+          <option value="Sans emploi">Sans emploi</option>
+          <option value="Étudiant(e)">Étudiant(e)</option>
+          <option value="Retraité(e)">Retraité(e)</option>
+        </select>
+      </label>
+
+      <label>Revenus mensuels (€) :
+        <input type="number" id="revenus" min="0" required />
+      </label>
+
+      <button type="submit">Simuler ma demande</button>
+
+      <p id="confirmation" style="display: none; color: green;"></p>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 — Site pédagogique réalisé par <strong>Mehdi</strong></p>
+  </footer>
+
+  <script>
+    document.getElementById("form-demarche").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const prestation = document.getElementById("prestation").value;
+      const nom = document.getElementById("nom-complet").value;
+      const naissance = document.getElementById("naissance").value;
+      const emploi = document.getElementById("emploi").value;
+      const revenus = document.getElementById("revenus").value;
+
+      const message = document.getElementById("confirmation");
+      message.innerHTML = `✅ Merci ${nom}, votre demande de <strong>${prestation}</strong> a été simulée.<br>
+      Dossier fictif enregistré sous le profil : <em>${emploi}, né(e) le ${naissance}, revenu : ${revenus} €</em>`;
+      message.style.display = "block";
+
+      // Tu peux aussi ajouter ici sessionStorage pour afficher ce récap dans une autre page si tu veux
+    });
+  </script>
+</body>
+</html>

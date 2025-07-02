@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inscription - Service Info CAF</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Service Info CAF</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="aides.html">Aides</a></li>
+          <li><a href="demarches.html">Démarches</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="caf-button"><a href="connexion.html">👤 Mon Compte</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Créer mon compte CAF</h2>
+      <p>Ce formulaire est fictif à usage pédagogique. Aucune donnée ne sera enregistrée.</p>
+    </section>
+
+   <form class="formulaire" id="form-inscription">
+  <label>Nom :
+    <input type="text" id="nom" required />
+  </label>
+
+  <label>Prénom :
+    <input type="text" id="prenom" required />
+  </label>
+
+  <label>Email :
+    <input type="email" id="email" required />
+  </label>
+
+  <label>Mot de passe :
+    <input type="password" id="password" required />
+  </label>
+
+  <label>Confirmer le mot de passe :
+    <input type="password" id="confirm" required />
+  </label>
+
+  <label>Numéro de sécurité sociale :
+    <input type="text" id="secu" maxlength="13" required />
+  </label>
+<label>Situation familiale :
+  <select id="situation" required>
+    <option value="">-- Sélectionner --</option>
+    <option value="Célibataire">Célibataire</option>
+    <option value="Marié(e)">Marié(e)</option>
+    <option value="Parent isolé">Parent isolé</option>
+    <option value="Concubinage">Concubinage</option>
+  </select>
+</label>
+
+<label>Nombre d’enfants :
+  <input type="number" id="enfants" min="0" max="10" required />
+</label>
+
+  <button type="submit">Créer mon compte</button>
+
+  <p id="message-erreur" style="color: red; display: none;"></p>
+  <p id="message-success" style="color: green; display: none;"></p>
+</form>
+  </main>
+
+  <footer>
+    <p>© 2025 — Site pédagogique réalisé par <strong>Mehdi</strong></p>
+  </footer>
+<script>
+  document.getElementById("form-inscription").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Champs du formulaire
+    const nom = document.getElementById("nom").value.trim();
+    const prenom = document.getElementById("prenom").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirm").value;
+    const secu = document.getElementById("secu").value.trim();
+const situation = document.getElementById("situation").value;
+const enfants = document.getElementById("enfants").value;
+
+    // Messages
+    const erreur = document.getElementById("message-erreur");
+    const success = document.getElementById("message-success");
+
+    erreur.style.display = "none";
+    success.style.display = "none";
+
+    // Vérifications
+    if (password !== confirm) {
+      erreur.textContent = "Les mots de passe ne correspondent pas.";
+      erreur.style.display = "block";
+      return;
+    }
+
+    if (!/^\d{13}$/.test(secu)) {
+      erreur.textContent = "Le numéro de sécurité sociale doit contenir 13 chiffres.";
+      erreur.style.display = "block";
+      return;
+    }
+
+    // Stockage temporaire
+    sessionStorage.setItem("nom", nom);
+    sessionStorage.setItem("prenom", prenom);
+    sessionStorage.setItem("email", email);
+sessionStorage.setItem("situation", situation);
+sessionStorage.setItem("enfants", enfants);
+
+    // Message de succès
+    success.textContent = "Inscription réussie ! Redirection vers votre espace...";
+    success.style.display = "block";
+
+    // Attente 1.5 sec puis redirection
+    setTimeout(() => {
+      window.location.href = "mon-espace.html";
+    }, 1500);
+  });
+</script>
+
+</body>
+</html>

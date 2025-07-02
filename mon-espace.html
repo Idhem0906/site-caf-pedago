@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mon espace - Service Info CAF</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Service Info CAF</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="aides.html">Aides</a></li>
+          <li><a href="demarches.html">Démarches</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="caf-button"><a href="connexion.html">👤 Mon Compte</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+     <h2>Bienvenue, <span id="prenom-nom"></span></h2>
+      <p>Votre tableau de bord personnel (simulation pédagogique).</p>
+    </section>
+
+    <section class="categories">
+      <div>
+        <h4>👨‍👩‍👧‍👦 Profil allocataire</h4>
+        <p><strong>N° allocataire :</strong> 1234567</p>
+        <p><strong>Email :</strong> <span id="email-affiche"></span></p>
+      <p><strong>Sit. familiale :</strong> <span id="situation-affiche"></span> • <span id="enfants-affiche"></span> enfant(s)</p>
+      </div>
+
+      <div>
+        <h4>💸 Aides en cours</h4>
+        <ul>
+          <li>APL — Dernier paiement : 05/06/2025</li>
+          <li>Allocation familiale — Montant : 134,00 €</li>
+          <li>Prime activité — En cours d'instruction</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>📨 Messages CAF</h4>
+        <ul>
+          <li>📅 28/06 : Mise à jour simulateur de droits</li>
+          <li>📎 24/06 : Justificatif de domicile manquant</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 — Site pédagogique réalisé par <strong>Mehdi</strong></p>
+  </footer>
+<script>
+  const nom = sessionStorage.getItem("nom");
+  const prenom = sessionStorage.getItem("prenom");
+  const email = sessionStorage.getItem("email");
+const situation = sessionStorage.getItem("situation");
+const enfants = sessionStorage.getItem("enfants");
+
+document.getElementById("situation-affiche").textContent = situation;
+document.getElementById("enfants-affiche").textContent = enfants;
+
+  document.getElementById("prenom-nom").textContent = `${prenom} ${nom}`;
+  document.getElementById("email-affiche").textContent = email;
+</script>
+</body>
+</html>
